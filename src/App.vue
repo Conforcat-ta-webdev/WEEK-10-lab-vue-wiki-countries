@@ -1,14 +1,16 @@
+<script setup>
+  import NavBar from "./components/NavBar.vue";
+
+</script>
+
 <template>
   <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+    <NavBar />
   </div>
 </template>
 
 <style>
+  /*
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -61,5 +63,5 @@ code {
     transform: rotate(360deg);
   }
 }
-
+*/
 </style>
