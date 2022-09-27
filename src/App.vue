@@ -1,10 +1,40 @@
+<script setup>
+  import NavbarVue from './components/Navbar.vue';
+import Navbar from './components/Navbar.vue';
+import CountriesList from './components/CountriesList.vue';
+import CountryDetails from './components/CountryDetails.vue';
+import countries from "./countries.json";
+
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  const url ='https://ih-countries-api.herokuapp.com/countries';
+  const countries = [];
+
+  fetch(url)
+    .then(response => {
+          if(response.ok) return response.json();
+    })
+    .then(json => {
+
+        json.forEach((country) => countries[country] = country ) ;
+    })
+})
+
+ console.log(countries);
+
+</script>
+
 <template>
-  <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+  <div class="app">
+    <Navbar />
+  
+    <div className="container">
+      <div className="row">
+        <CountriesList :countries="countries" />
+        <router-view /> 
+      </div>
+    </div>
   </div>
 </template>
 
