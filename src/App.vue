@@ -1,25 +1,31 @@
+<script setup>
+import Navbar from "./components/Navbar.vue";
+import CountriesList from "./components/CountriesList.vue";
+import CountryDetails from "./components/CountryDetails.vue";
+</script>
+
 <template>
-  <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+  <Navbar />
+  <div className="container">
+    <div className="row">
+      <CountriesList></CountriesList>
+      <CountryDetails></CountryDetails>
+    </div>
   </div>
 </template>
 
 <style>
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -61,5 +67,4 @@ code {
     transform: rotate(360deg);
   }
 }
-
 </style>
