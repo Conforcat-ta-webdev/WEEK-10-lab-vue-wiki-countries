@@ -1,9 +1,9 @@
 <script setup>
-  import NavbarVue from './components/Navbar.vue';
 import Navbar from './components/Navbar.vue';
 import CountriesList from './components/CountriesList.vue';
-import CountryDetails from './components/CountryDetails.vue';
 import countries from "./countries.json";
+import { RouterView} from 'vue-router';
+
 
 import { onMounted } from 'vue';
 
@@ -21,7 +21,7 @@ onMounted(() => {
     })
 })
 
- console.log(countries);
+
 
 </script>
 
@@ -32,7 +32,7 @@ onMounted(() => {
     <div className="container">
       <div className="row">
         <CountriesList :countries="countries" />
-        <router-view /> 
+        <RouterView />
       </div>
     </div>
   </div>
