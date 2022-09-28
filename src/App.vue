@@ -1,11 +1,25 @@
 <script setup>
+  import { RouterView } from "vue-router";
+  import { RouterLink } from "vue-router";
   import NavBar from "./components/NavBar.vue";
-
+  import CountriesList from "./components/CountriesList.vue";
+  
 </script>
 
 <template>
   <div className="app">
     <NavBar />
+
+    <div className="container">
+    <div className="row">
+     <!--  <CountriesList :countries="countries" /> -->
+     <CountriesList />
+     <!--
+     <router-link :to="{ name: 'details' }">COUNTRY DETAILS</router-link>
+      <router-view /> -->
+    </div>
+  </div>
+
   </div>
 </template>
 
