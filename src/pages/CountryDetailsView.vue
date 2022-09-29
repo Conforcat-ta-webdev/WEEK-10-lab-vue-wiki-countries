@@ -5,9 +5,7 @@
 <script>
 import CountryDetails from "../components/CountryDetails.vue";
 export default {
-  components: {
-    CountryDetails,
-  },
+  components: { CountryDetails },
 };
 </script>
 

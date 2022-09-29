@@ -1,14 +1,14 @@
 <template>
   <!-- Country Details (Bootstrap column) -->
-  <div class="col-7 text-center">
-    <img :src="getFlag" alt="country flag" style="width: 300px" />
-    <h1>{{ country.name.common }}</h1>
+  <div v-if="alphaCode" class="col-7 text-center">
+    <img :src="flag" alt="country flag" style="width: 300px" />
+    <h1>{{ this.country.name?.common }}</h1>
     <table class="table">
       <thead></thead>
       <tbody>
         <tr>
           <td style="width: 30%">Capital</td>
-          <td>{{ getCapital }}</td>
+          <td>{{ capital }}</td>
         </tr>
         <tr>
           <td>Area</td>
@@ -28,45 +28,44 @@
 </template>
 
 <script>
-import CountryBorders from "../components/CountryBorders.vue";
+import countriesJson from "../countries.json";
+import CountryBorders from "./CountryBorders.vue";
 export default {
   props: {
     // country: Object,
   },
   data() {
     return {
-      country: {},
+      country: null,
     };
   },
   created() {
-    this.country = {
-      name: {
-        common: "France",
-      },
-      alpha2Code: "FR",
-      capital: ["Paris"],
-      area: 551695,
-      borders: ["AND", "BEL", "DEU", "ITA", "LUX", "MCO", "ESP", "CHE"],
-    };
+    this.country = this.fetchCountry();
+  },
+  updated() {
+    console.log("updated");
+    this.country = this.fetchCountry();
+  },
+  methods: {
+    fetchCountry() {
+      return [...countriesJson].filter(
+        (c) => this.alphaCode === c.alpha3Code
+      )[0];
+    },
   },
   computed: {
-    getFlag() {
-      return `https://flagcdn.com/w320/${this.country.alpha2Code.toLowerCase()}.png`;
+    alphaCode() {
+      return this.$route.params.alphaCode;
     },
-    getCapital() {
-      return this.country?.capital[0];
+    capital() {
+      return this.country?.capital?.[0];
+    },
+    flag() {
+      return `https://flagcdn.com/w320/${this.country.alpha2Code?.toLowerCase()}.png`;
     },
   },
-  components: {
-    CountryBorders,
-  },
+  components: { CountryBorders },
 };
 </script>
 <style scoped>
-li {
-  list-style-type: none;
-}
-tr > td:nth-child(1) {
-  font-weight: 600;
-}
 </style>

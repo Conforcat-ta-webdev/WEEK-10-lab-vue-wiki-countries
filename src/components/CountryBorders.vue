@@ -1,13 +1,15 @@
 <template>
   <ul>
     <li v-for="border in borders" :key="border">
-      <a :href="getLinkToDetail(border)">{{ getCountryName(border) }}</a>
+      <router-link :to="getLinkToDetail(border)">{{
+        getCountryName(border)
+      }}</router-link>
     </li>
   </ul>
 </template>
 
 <script>
-import countriesJson from "../countries.json";
+import countriesJson from "../../public/countries.json";
 export default {
   props: {
     borders: Array,
@@ -18,7 +20,7 @@ export default {
         ?.name.common;
     },
     getLinkToDetail(alpha3Code) {
-      return "/" + alpha3Code;
+      return "/list/" + alpha3Code;
     },
   },
 };

@@ -12,7 +12,7 @@ const routes = [
     component: () => import("../pages/CountriesListView.vue"),
     children: [
       {
-        path: "/details", // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
+        path: ":alphaCode", // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
         name: "details",
         component: () => import("../pages/CountryDetailsView.vue"),
       },

@@ -1,8 +1,11 @@
 <template>
-  <a class="list-group-item list-group-item-action" :href="getLinkToDetail">
+  <router-link
+    class="list-group-item list-group-item-action"
+    :to="getLinkToDetail"
+  >
     <img :src="getFlag" />
     <p>{{ name }}</p>
-  </a>
+  </router-link>
 </template>
 
 <script>
@@ -17,7 +20,7 @@ export default {
       return `https://flagpedia.net/data/flags/icon/72x54/${this.alpha2Code?.toLowerCase()}.png`;
     },
     getLinkToDetail() {
-      return "/" + this.alpha3Code;
+      return "/list/" + this.alpha3Code;
     },
   },
 };
