@@ -5,28 +5,28 @@ import countries from './../countries.json';
 
 <template>
     <div class="container">
-        <h1>--- I'm the countries list ----</h1>
-
-
         <div class="row">
             <div class="col">
                 <div class="border" v-for="country in countries" :key="country.alpha3Code">
-                    <img :src=" 'https://flagpedia.net/data/flags/icon/72x54/'+ country.alpha2Code.toLowerCase() + '.png' ">
-                    
-                    <p></p> 
-                    <p>{{country.name.common}}</p>
+                    <router-link :to="{ name: 'details', params: { code: country.alpha3Code }  }"
+                        class="text-decoration-none text-reset">
+                        <div>
+                            <img
+                                :src=" 'https://flagpedia.net/data/flags/icon/72x54/'+ country.alpha2Code.toLowerCase() + '.png' ">
+                            <p>{{country.name.common}}</p>
+
+                        </div>
+                    </router-link>
                 </div>
             </div>
             <div class="col">
-                x
+                <router-view />
             </div>
-
-
         </div>
-
-
-        <p>{{countries.length}}</p>
-
-
     </div>
 </template>
+<style>
+.border:hover {
+    background-color: #80a1df;
+}
+</style>
