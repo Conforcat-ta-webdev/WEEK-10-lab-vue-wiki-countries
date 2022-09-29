@@ -8,7 +8,7 @@ const routes = [
     component: () => import('../components/CountriesList.vue'),
   },
   {
-    path: '/details:id', // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
+    path: '/details', // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
     name: 'details',
     component: () => import(/* webpackChunkName: 'details' */ '../components/CountryDetails.vue')
   },

@@ -1,10 +1,10 @@
 <template>
   <div className="app">
     <Navbar />
-
+    
     <div className="container">
       <div className="row">
-        <CountriesList v-for="country in countries" :key="country.id" :countries="country"/>
+        <CountriesList v-for="country in countries" :key="country.alpha3Code" :country="country"/>
         <router-view />
       </div>
     </div>
@@ -19,10 +19,10 @@ import countries from "./countries.json";
 
 export default {
   data: () => ({
-    countries: countries
+      countries: countries
   }),
   components: { Navbar, CountriesList }
-}
+};
 </script>
 
 <style>
