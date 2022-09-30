@@ -17,9 +17,18 @@ import CountryDetails from './components/CountryDetails.vue'
         </div>
 
         <div class="col-7">
+          <p class="hello-info" v-if="$route.name === 'root'">Select a country in the left bar to know all its info :)</p>
           <RouterView />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.hello-info {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10vh;
+}
+</style>

@@ -8,6 +8,7 @@ const countries = reactive({list: []})
 // const countries = ref(null) --> con 'ref' tamb funciona
 const loading = ref(true);
 const error = ref(null)
+const search = ref('')
 
 // ?? mejor definir las variables con 'const' o con 'let'?
 // -> las variables 'ref' o 'reactivas' mejor con const xk, por ejemplo, 
@@ -29,13 +30,24 @@ onMounted(async () => {
 <template>
     <p v-if="error">{{ error }}</p>
     <p v-if="loading">Loading info...</p>
+    <input v-if="!loading" v-model="search" placeholder="Search a country"/>
     <RouterLink
         v-for="country in countries.list"
         :key="country._id"
         class="list-group-item list-group-item-action"
         :to="country.alpha3Code"
+        v-show="country.name.common.toLowerCase().includes(search.toLowerCase())"
     >
         <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`" />
         <p>{{ country.name.common }}</p>
     </RouterLink>
 </template>
+
+<style scoped>
+input {
+    padding: 0 10px;
+    border: 2px solid #939393;
+    background: #f2f2f2;
+    height: 40px;
+}
+</style>
