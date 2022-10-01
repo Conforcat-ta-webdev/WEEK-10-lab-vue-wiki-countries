@@ -1,5 +1,9 @@
 <template>
-  <div class="col-5" style="max-height: 90vh; overflow: scroll">
+  <div
+    v-if="this.countries"
+    class="col-5"
+    style="max-height: 90vh; overflow: scroll"
+  >
     <div class="list-group text-center">
       <CountryListItem
         v-for="country in countries"
@@ -10,29 +14,34 @@
       />
     </div>
   </div>
+  <SpinnerText v-else text="Loading countries" />
 </template>
   <script>
 import CountryListItem from "./CountryListItem.vue";
-import countriesJson from "../countries.json";
+//import countriesJson from "../countries.json";
+import * as countriesAPI from "../api/countriesApi.js";
+import SpinnerText from "./SpinnerText.vue";
 export default {
   data() {
     return {
-      countries: [],
+      countries: null,
     };
   },
   props: {
     countryList: Array,
   },
-  components: { CountryListItem },
+  components: { CountryListItem, SpinnerText },
   methods: {
-    fetchCountries() {
-      return countriesJson;
+    async fetchCountries() {
+      return countriesAPI.sortCountries(await countriesAPI.getAllCountries());
+    },
+    flag() {
+      return `https://flagcdn.com/w320/${this.country.alpha2Code?.toLowerCase()}.png`;
     },
   },
-  mounted() {
-    this.countries = this.fetchCountries();
-    this.countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+  async mounted() {
+    this.countries = await this.fetchCountries();
   },
 };
 </script>
-<style></style>
+<style scoped></style>
