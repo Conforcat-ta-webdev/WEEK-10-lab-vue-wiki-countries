@@ -1,10 +1,20 @@
+<script setup>
+
+  import Navbar from './components/Navbar.vue';
+  import CountriesList from './components/CountriesList.vue';
+
+</script>
+
 <template>
   <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+    <Navbar />
+    
+    <div class="container">
+      <div class="row">
+        <CountriesList />
+        <RouterView />
+      </div>
+    </div>
   </div>
 </template>
 
