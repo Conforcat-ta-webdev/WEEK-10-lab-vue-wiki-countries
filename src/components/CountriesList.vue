@@ -31,16 +31,18 @@ onMounted(async () => {
     <p v-if="error">{{ error }}</p>
     <p v-if="loading">Loading info...</p>
     <input v-if="!loading" v-model="search" placeholder="Search a country"/>
-    <RouterLink
-        v-for="country in countries.list"
-        :key="country._id"
-        class="list-group-item list-group-item-action"
-        :to="country.alpha3Code"
-        v-show="country.name.common.toLowerCase().includes(search.toLowerCase())"
-    >
-        <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`" />
-        <p>{{ country.name.common }}</p>
-    </RouterLink>
+    <TransitionGroup name="list">
+        <RouterLink
+            v-for="country in countries.list"
+            :key="country._id"
+            class="list-group-item list-group-item-action"
+            :to="country.alpha3Code"
+            v-show="country.name.common.toLowerCase().includes(search.toLowerCase())"
+        >
+            <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`" />
+            <p>{{ country.name.common }}</p>
+        </RouterLink>
+    </TransitionGroup>
 </template>
 
 <style scoped>
@@ -49,5 +51,14 @@ input {
     border: 2px solid #939393;
     background: #f2f2f2;
     height: 40px;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>
