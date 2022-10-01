@@ -38,7 +38,7 @@
                 <tr>
                     <td>Borders</td>
                     <td>
-                        <div v-for="countryBorder in countries" :key="country.alpha3Code">
+                        <div v-for="countryBorder in countries" :key="countryBorder.alpha3Code">
                             <div v-for="(border, index) in country.borders" :key="index">
                                 <div v-if="border === countryBorder.alpha3Code">
                                     <RouterLink :to="border">{{ countryBorder.name.common }}</RouterLink>

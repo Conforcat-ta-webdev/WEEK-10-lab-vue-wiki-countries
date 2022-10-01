@@ -6,7 +6,6 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    // component: () => import('../components/CountriesList.vue'),
     children: [
       {
         path: '/:code',
@@ -15,11 +14,6 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: '/:code',
-  //   name: 'details',
-  //   component: () => import('../components/CountryDetails.vue')
-  // }
 ];
 
 const router = createRouter({
