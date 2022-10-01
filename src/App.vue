@@ -27,10 +27,10 @@ onMounted(() => {
   <div class="app">
     <Navbar />
   
-    <div className="container v">
-      <div className="row text-center">
-        <RouterView />
+    <div className="container">
+      <div className="row" >
         <CountriesList :countries="countries" /> 
+        <RouterView />
       </div>
     </div>
   </div>

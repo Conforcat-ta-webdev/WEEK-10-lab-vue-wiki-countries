@@ -19,7 +19,8 @@ const ALPHA2 = "ALPHA2"
 
 
 <template>
-    <RouterLink 
+    <div class="col-md-6 country-list" >
+     <RouterLink 
         v-for="country in countries" :key="country.alpha3Code"
         :to="{ name: 'details', params: { countries: country.alpha3Code } }" >
         <ul class="list-group">
@@ -32,6 +33,12 @@ const ALPHA2 = "ALPHA2"
                 <br>
             </li>
         </ul>
-    </RouterLink>
+     </RouterLink>
+    </div>
 </template> 
 
+<style scoped>
+    .country-list {
+        height: 70vh
+    }
+</style>

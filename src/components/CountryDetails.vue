@@ -6,47 +6,37 @@ import countries from "../countries.json";
 
 const route = useRoute()
 
- let baseFlagURL = ref('');
-
-
+const baseFlagURL = ref('');
 const myCountry = ref({});
 
 
-countries.forEach( (country) => {
-  if(country.alpha3Code === route.params.countries) 
-    myCountry.value = country
-} )
-
-//console.log(myCountry.value)
-
-onUpdated( () => {
-  
+function importCountry() {
   countries.forEach( (country) => {
   if(country.alpha3Code === route.params.countries) {
     myCountry.value = country
     baseFlagURL.value = 'https://flagpedia.net/data/flags/icon/72x54/ALPHA2.png'.replace('ALPHA2', country.alpha2Code.toLowerCase());
   }
 } );
+}
 
-//baseFlagURL.replace(ALPHA2,myCountry.alpha2Code.toLowerCase());
-})
+
+importCountry();
+baseFlagURL.value = 'https://flagpedia.net/data/flags/icon/72x54/ALPHA2.png'.replace('ALPHA2', myCountry.value.alpha2Code.toLowerCase());
+
+
+onUpdated( () => importCountry() )
+
 
 
 /*
-
 async function getCountry() {
-
 const countryURL = 'https://ih-countries-api.herokuapp.com/countries/'.concat(route.params.countries);
-
 const response = await fetch(countryURL)
-
 if(response.ok) {
   const json = await response.json()
   myCountry.value = json
 }
-
 */
-
 
 /* A different way of getting my object from fetch
       .then(response => {
@@ -63,22 +53,27 @@ if(response.ok) {
       getCountry();
 */
 
-
   </script>
 
 <template>
-
- <h1>These are the country details: {{ $route.params }}</h1>  
- {{ myCountry.name.common }} 
- {{ baseFlagURL }}
- <!-- {{ flagURL }} -->
-     <!-- {{ country.name.common }}  -->
-   <img class="chosenFlag" alt="Flag image" :src="baseFlagURL" >  
+  <div class="col-md-6">
+    <div class="card" style="width: 25rem; margin-left: 140px;">
+      <img :src="baseFlagURL" class="card-img-top" alt="Flag image">
+      <div class="card-body">
+        <h2 class="card-title text-center">{{ myCountry.name.common }}</h2>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+    
+  
+  </div>
 </template>
 
 
 <style scoped>
   .chosenFlag {
-    width: 200px;
+    width: 250px;
   }
 </style>
