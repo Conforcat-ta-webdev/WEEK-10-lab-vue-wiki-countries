@@ -1,0 +1,64 @@
+<script setup>
+import { ref, reactive, onMounted } from "vue"
+
+// ?? xk al poner 'countries' como 'ref' sí funcionaba y con 'reactive' no?
+// -> con 'reactive' hemos de definir una key y la respuesta del fetch asociarla a esta key
+//     ya que sino al hacer 'countries = json' sobreescribía la variable reactiva y se perdía la reactividad
+const countries = reactive({list: []})
+// const countries = ref(null) --> con 'ref' tamb funciona
+const loading = ref(true);
+const error = ref(null)
+const search = ref('')
+
+// ?? mejor definir las variables con 'const' o con 'let'?
+// -> las variables 'ref' o 'reactivas' mejor con const xk, por ejemplo, 
+//     luego te pueden sobreescribr la variable y pierda la reactividad, como me ha pasado
+
+onMounted(async () => {
+    try {
+        const res = await fetch("https://ih-countries-api.herokuapp.com/countries")
+        if (res.ok) countries.list = await res.json()
+        if (!res.ok) error.value = "Error! Could not reach the API."
+        loading.value = !loading.value
+    } catch (error) {
+        error.value = "Error! Could not reach the API."
+        loading.value = !loading.value
+    }
+})
+</script>
+
+<template>
+    <p v-if="error">{{ error }}</p>
+    <p v-if="loading">Loading info...</p>
+    <input v-if="!loading" v-model="search" placeholder="Search a country"/>
+    <TransitionGroup name="list">
+        <RouterLink
+            v-for="country in countries.list"
+            :key="country._id"
+            class="list-group-item list-group-item-action"
+            :to="country.alpha3Code"
+            v-show="country.name.common.toLowerCase().includes(search.toLowerCase())"
+        >
+            <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`" />
+            <p>{{ country.name.common }}</p>
+        </RouterLink>
+    </TransitionGroup>
+</template>
+
+<style scoped>
+input {
+    padding: 0 10px;
+    border: 2px solid #939393;
+    background: #f2f2f2;
+    height: 40px;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>
