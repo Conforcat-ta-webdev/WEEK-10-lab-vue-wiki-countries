@@ -1,29 +1,23 @@
+<script setup>
+
+  import Navbar from './components/Navbar.vue';
+  import CountriesList from './components/CountriesList.vue';
+  import { RouterView } from 'vue-router';
+
+</script>
+
 <template>
   <div className="app">
     <Navbar />
     
-    <div className="container">
-      <div className="row">
-        <CountriesList v-for="country in countries" :key="country.alpha3Code" :country="country"/>
-        <router-view />
+    <div class="container">
+      <div class="row">
+        <CountriesList />
+        <RouterView />
       </div>
     </div>
   </div>
 </template>
-
-<script>
-
-import Navbar from './components/Navbar.vue';
-import CountriesList from './components/CountriesList.vue';
-import countries from "./countries.json";
-
-export default {
-  data: () => ({
-      countries: countries
-  }),
-  components: { Navbar, CountriesList }
-};
-</script>
 
 <style>
 body {

@@ -8,10 +8,10 @@ const routes = [
     component: () => import('../components/CountriesList.vue'),
   },
   {
-    path: '/details', // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
+    path: '/:code',
     name: 'details',
-    component: () => import(/* webpackChunkName: 'details' */ '../components/CountryDetails.vue')
-  },
+    component: () => import('../components/CountryDetails.vue')
+  }
 ];
 
 const router = createRouter({
