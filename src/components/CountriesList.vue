@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+
+import { RouterLink } from 'vue-router';
 
     const props = defineProps({
         countries: {
             type: Array,
-            required: true,
+            required: false,
         },
         
 })
@@ -23,14 +23,14 @@ const ALPHA2 = "ALPHA2"
         v-for="country in countries" :key="country.alpha3Code"
         :to="{ name: 'details', params: { countries: country.alpha3Code } }" >
         <ul class="list-group">
-            <ui class="list-group-item list-group-item-action">
+            <li class="list-group-item list-group-item-action">
                 <p>{{ country.name.common  }}</p>
                 <img alt="Country Flag" 
                 :src="baseFlagURL.replace(ALPHA2,country.alpha2Code.toLowerCase())"
                 >
                 <p></p>
                 <br>
-            </ui>
+            </li>
         </ul>
     </RouterLink>
 </template> 

@@ -2,14 +2,13 @@
 import Navbar from './components/Navbar.vue';
 import CountriesList from './components/CountriesList.vue';
 import countries from "./countries.json";
-import { RouterView} from 'vue-router';
-
-
+import { RouterView } from 'vue-router';
 import { onMounted } from 'vue';
 
+/*
 onMounted(() => {
   const url ='https://ih-countries-api.herokuapp.com/countries';
-  const countries = [];
+  //const countries = [];
 
   fetch(url)
     .then(response => {
@@ -20,8 +19,7 @@ onMounted(() => {
         json.forEach((country) => countries[country] = country ) ;
     })
 })
-
-
+*/
 
 </script>
 
@@ -29,10 +27,10 @@ onMounted(() => {
   <div class="app">
     <Navbar />
   
-    <div className="container">
-      <div className="row">
-        <CountriesList :countries="countries" />
+    <div className="container v">
+      <div className="row text-center">
         <RouterView />
+        <CountriesList :countries="countries" /> 
       </div>
     </div>
   </div>
