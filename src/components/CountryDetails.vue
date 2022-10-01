@@ -1,7 +1,7 @@
 <script setup>
     import countries from "../countries.json"
     import { useRoute } from 'vue-router'
-    import { reactive } from 'vue';
+    import { computed } from 'vue'
     
     function getCountryByCode(code) {
         const validCountries = countries.filter((country) => {
@@ -12,9 +12,10 @@
         }
     }
 
-    const route = useRoute()
-    const country = reactive(getCountryByCode(route.params.code));
-    
+    const route = useRoute();
+    const country = computed (() => {
+        return getCountryByCode(route.params.code);
+    });
 </script>
 
 <template>
@@ -26,7 +27,7 @@
             <tbody>
                 <tr>
                     <td style="width: 30%">Capital</td>
-                    <td>{{ country.capital }}</td>
+                    <td>{{ country.capital[0] }}</td>
                 </tr>
                 <tr>
                     <td>Area</td>

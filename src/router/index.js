@@ -1,17 +1,25 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 
+
 const routes = [
   {
     path: '/',
     name: 'root',
-    component: () => import('../components/CountriesList.vue'),
+    // component: () => import('../components/CountriesList.vue'),
+    children: [
+      {
+        path: '/:code',
+        name: 'details',
+        component: () => import('../components/CountryDetails.vue')
+      }
+    ]
   },
-  {
-    path: '/:code',
-    name: 'details',
-    component: () => import('../components/CountryDetails.vue')
-  }
+  // {
+  //   path: '/:code',
+  //   name: 'details',
+  //   component: () => import('../components/CountryDetails.vue')
+  // }
 ];
 
 const router = createRouter({
