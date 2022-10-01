@@ -36,13 +36,9 @@
     width:10px;
   }
 
-  .scroll::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+  .scroll::-webkit-scrollbar-button {
     display: none;
   } 
-
-  .scroll::-webkit-scrollbar:horizontal {
-    height: 10px;
-  }
 
   .scroll::-webkit-scrollbar-thumb {
     background-color: #797979;
