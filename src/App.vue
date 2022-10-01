@@ -30,7 +30,7 @@ onMounted(() => {
     <div className="container">
       <div className="row" >
         <CountriesList :countries="countries" /> 
-        <RouterView />
+        <!-- <RouterView /> -->
       </div>
     </div>
   </div>
