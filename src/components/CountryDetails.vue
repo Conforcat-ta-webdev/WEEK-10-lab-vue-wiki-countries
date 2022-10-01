@@ -1,6 +1,6 @@
 <template>
   <!-- Country Details (Bootstrap column) -->
-  <div v-if="alphaCode" class="col-7 text-center">
+  <div v-if="alphaCode && country" class="col-7 text-center">
     <img :src="flag" alt="country flag" style="width: 300px" />
     <h1>{{ this.country.name?.common }}</h1>
     <table class="table">
@@ -25,11 +25,16 @@
       </tbody>
     </table>
   </div>
+  <div v-else class="col-7 text-center">
+    <SpinnerText text="Loading country details" />
+  </div>
 </template>
 
 <script>
-import countriesJson from "../countries.json";
+//import countriesJson from "../countries.json";
 import CountryBorders from "./CountryBorders.vue";
+import { getCountryByAlpha3Code } from "../api/countriesApi";
+import SpinnerText from "./SpinnerText.vue";
 export default {
   props: {
     // country: Object,
@@ -39,18 +44,12 @@ export default {
       country: null,
     };
   },
-  created() {
-    this.country = this.fetchCountry();
+  async mounted() {
+    this.country = await getCountryByAlpha3Code(this.alphaCode);
   },
-  updated() {
-    console.log("updated");
-    this.country = this.fetchCountry();
-  },
-  methods: {
-    fetchCountry() {
-      return [...countriesJson].filter(
-        (c) => this.alphaCode === c.alpha3Code
-      )[0];
+  watch: {
+    async alphaCode(newAlphaCode) {
+      this.country = await getCountryByAlpha3Code(newAlphaCode);
     },
   },
   computed: {
@@ -64,7 +63,7 @@ export default {
       return `https://flagcdn.com/w320/${this.country.alpha2Code?.toLowerCase()}.png`;
     },
   },
-  components: { CountryBorders },
+  components: { CountryBorders, SpinnerText },
 };
 </script>
 <style scoped>

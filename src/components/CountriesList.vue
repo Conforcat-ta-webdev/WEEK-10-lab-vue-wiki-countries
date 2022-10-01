@@ -35,9 +35,6 @@ export default {
     async fetchCountries() {
       return countriesAPI.sortCountries(await countriesAPI.getAllCountries());
     },
-    flag() {
-      return `https://flagcdn.com/w320/${this.country.alpha2Code?.toLowerCase()}.png`;
-    },
   },
   async mounted() {
     this.countries = await this.fetchCountries();
