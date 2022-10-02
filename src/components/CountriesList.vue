@@ -1,6 +1,7 @@
 <script setup>
 
 import { RouterLink } from 'vue-router';
+import { RouterView } from 'vue-router';
 
     const props = defineProps({
         countries: {
@@ -12,8 +13,6 @@ import { RouterLink } from 'vue-router';
 
 const baseFlagURL = 'https://flagpedia.net/data/flags/icon/72x54/ALPHA2.png';
 const ALPHA2 = "ALPHA2"
-
-
 
 </script>
 
@@ -42,27 +41,9 @@ const ALPHA2 = "ALPHA2"
     </div>
   </div>
   <div class="col-4">
-   <router-view></router-view>
+  <RouterView></RouterView>
 </div>
 </div>
-
-
-    <!-- <div data-bs-spy="scroll" class="scrollspy-example col-md-6 country-list" >
-     <RouterLink 
-        v-for="country in countries" :key="country.alpha3Code"
-        :to="{ name: 'details', params: { countries: country.alpha3Code } }" >
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-action">
-                <p>{{ country.name.common  }}</p>
-                <img alt="Country Flag" 
-                :src="baseFlagURL.replace(ALPHA2,country.alpha2Code.toLowerCase())"
-                >
-                <p></p>
-                <br>
-            </li>
-        </ul>
-     </RouterLink>
-    </div> -->
 </template> 
 
 <style scoped>

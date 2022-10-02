@@ -1,36 +1,34 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
 import CountriesList from './components/CountriesList.vue';
-import countries from "./countries.json";
-import { RouterView } from 'vue-router';
-import { onMounted } from 'vue';
+// import countries from "./countries.json";
+import Loader from './components/Loader.vue'
 
-/*
-onMounted(() => {
-  const url ='https://ih-countries-api.herokuapp.com/countries';
-  //const countries = [];
+import { onMounted, ref } from 'vue';
+
+const loading = ref(true);
+
+const url ='https://ih-countries-api.herokuapp.com/countries';
+const countries = ref([]);
 
   fetch(url)
     .then(response => {
           if(response.ok) return response.json();
     })
     .then(json => {
-
-        json.forEach((country) => countries[country] = country ) ;
+      json.forEach((country) => countries.value.push(country)) ;
+      loading.value = false
     })
-})
-*/
-
 </script>
 
 <template>
   <div class="app">
     <Navbar />
-  
+
     <div className="container">
       <div className="row" >
-        <CountriesList :countries="countries" /> 
-        <!-- <RouterView /> -->
+        <Loader v-if="loading" />
+        <CountriesList v-else :countries="countries" /> 
       </div>
     </div>
   </div>
@@ -50,6 +48,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 
 .app {
   text-align: center;
