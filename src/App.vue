@@ -54,6 +54,13 @@ code {
   margin-bottom: 20px;
   padding: 0px 35px;
 }
+a.list-group-item {
+  padding-top: 30px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {

@@ -1,10 +1,14 @@
 <script setup>
-// import countries from "../countries.json";
 import { ref, reactive, onMounted } from "vue";
+import LoadingSpinnerVue from "./LoadingSpinner.vue";
+
+// import gsap from "gsap";
 
 const countries = reactive({ list: [] });
 const loading = ref(true);
 const error = ref(null);
+const query = ref("");
+const search = ref("");
 
 onMounted(async () => {
   try {
@@ -17,20 +21,96 @@ onMounted(async () => {
     loading.value = !loading.value;
   }
 });
+// const computedList = computed(() => {
+//   return countries.list.filter((item) =>
+//     item.msg.toLowerCase().includes(query.value)
+//   );
+// });
+
+// function onBeforeEnter(el) {
+//   el.style.opacity = 0;
+//   el.style.height = 0;
+// }
+
+// function onEnter(el, done) {
+//   gsap.to(el, {
+//     opacity: 1,
+//     height: "1.6em",
+//     delay: el.dataset.index * 0.15,
+//     onComplete: done,
+//   });
+// }
+
+// function onLeave(el, done) {
+//   gsap.to(el, {
+//     opacity: 0,
+//     height: 0,
+//     delay: el.dataset.index * 0.15,
+//     onComplete: done,
+//   });
+// }
 </script>
 
 <template>
-  <p v-if="error">{{ error }}</p>
-  <p v-if="loading">fetching... :)</p>
-  <RouterLink
-    v-for="country in countries.list"
-    :key="country._id"
-    class="list-group-item list-group-item-action"
-    :to="country.alpha3Code"
-  >
-    <img
-      :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`"
+  <!-- <input v-model="query" /> -->
+  <TransitionGroup name="list">
+    <!-- tag="div"
+    :css="false"
+    @before-enter="onBeforeEnter"
+    @enter="onEnter"
+    @leave="onLeave" -->
+    <p v-if="error">{{ error }}</p>
+    <p v-if="loading" class="fetch-method">fetching... 🫣</p>
+    <input
+      v-if="!loading"
+      v-model="search"
+      placeholder="please enter country name"
+      class="country-search"
     />
-    <p>{{ country.name.common }}</p>
-  </RouterLink>
+    <RouterLink
+      v-for="country in countries.list"
+      :key="country._id"
+      class="list-group-item list-group-item-action"
+      :to="country.alpha3Code"
+      v-show="country.name.common.toLowerCase().includes(search.toLowerCase())"
+    >
+      <loader :active="loaderActive" message="Please wait 5 seconds" />
+      <img
+        :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`"
+      />
+      <p>{{ country.name.common }}</p>
+    </RouterLink>
+  </TransitionGroup>
 </template>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.fetch-method {
+  position: absolute;
+  top: 159px;
+  left: 160px;
+}
+
+li {
+  padding-top: 0.5em;
+}
+
+.country-search {
+  position: absolute;
+  top: 100px;
+  right: 75px;
+  width: 285px;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  text-align: center;
+}
+</style>

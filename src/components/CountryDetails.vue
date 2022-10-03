@@ -36,50 +36,64 @@ watch((route) => fetchData());
 </script>
 
 <template>
-  <p v-if="error">{{ error }}</p>
-  <p v-if="loading">fetching... :)</p>
-  <div v-if="country">
-    <!-- <img
+  <TransitionGroup name="list">
+    <p v-if="error">{{ error }}</p>
+    <p v-if="loading">fetching... 🤓</p>
+    <div v-if="country">
+      <!-- <img
     :src="`https://flagpedia.net/data/flags/icon/72x54/${country[0].alpha2Code.toLowerCase()}.png`"
     alt="country flag"
     style="width: 100px"
   /> -->
-    <img
-      :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`"
-      alt="country flag"
-      style="width: 100px"
-    />
-    <!-- <h1>{{ country[0].name.common }}</h1> -->
-    <h1>{{ country.name.common }}</h1>
-    <table class="table">
-      <thead></thead>
-      <tbody>
-        <tr>
-          <td style="width: 30%">Capital</td>
-          <!-- <td>{{ country[0].capital.join(", ") }}</td> -->
-          <td>{{ country.capital.join(", ") }}</td>
-        </tr>
-        <tr>
-          <td>Area</td>
-          <!-- <td>{{ country[0].area }} km <sup>2</sup></td> -->
-          {{
-            country.area
-          }}
-          km
-          <sup>2</sup>
-        </tr>
-        <tr>
-          <td>Borders</td>
-          <td>
-            <ul>
-              <!-- <li v-for="border in country[0].borders" :key="border"> -->
-              <li v-for="border in country.borders" :key="border">
-                <RouterLink :to="border">{{ border }}</RouterLink>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <img
+        :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`"
+        alt="country flag"
+        style="width: 100px"
+      />
+      <!-- <h1>{{ country[0].name.common }}</h1> -->
+      <h1>{{ country.name.common }}</h1>
+      <table class="table">
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td style="width: 30%">Capital</td>
+            <!-- <td>{{ country[0].capital.join(", ") }}</td> -->
+            <td>{{ country.capital.join(", ") }}</td>
+          </tr>
+          <tr>
+            <td>Area</td>
+            <!-- <td>{{ country[0].area }} km <sup>2</sup></td> -->
+            {{
+              country.area
+            }}
+            km
+            <sup>2</sup>
+          </tr>
+          <tr>
+            <td>Borders</td>
+            <td>
+              <ul>
+                <!-- <li v-for="border in country[0].borders" :key="border"> -->
+                <li v-for="border in country.borders" :key="border">
+                  <RouterLink :to="border">{{ border }}</RouterLink>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </TransitionGroup>
 </template>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>

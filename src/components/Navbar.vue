@@ -56,7 +56,7 @@ import { RouterLink } from "vue-router";
             </ul>
           </li> -->
         </ul>
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <input
             class="form-control me-2"
             type="search"
@@ -64,7 +64,7 @@ import { RouterLink } from "vue-router";
             aria-label="Search"
           />
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </nav>
