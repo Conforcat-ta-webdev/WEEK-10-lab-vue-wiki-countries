@@ -1,9 +1,32 @@
 <template>
 <div class="app">
+
+  <Navbar />
+  <div className="container">
+    <div className="row">
+      <CountriesList :countries="countries" />
+      <CountryDetails />
+      <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
+<script setup>
+import Navbar from "./components/Navbar.vue";
+import countries from "./countries.json"
+import CountriesList from './components/CountriesList.vue'
+import CountryDetails from './components/CountryDetails.vue'
+
+
+
+</script>
+
 <style>
+  .selector-for-some-widget {
+  box-sizing: content-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
