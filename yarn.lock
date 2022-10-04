@@ -112,10 +112,10 @@
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.31.tgz"
   "version" "3.2.31"
 
-"bootstrap@^5.2.1":
-  "integrity" "sha512-UQi3v2NpVPEi1n35dmRRzBJFlgvWHYwyem6yHhuT6afYF+sziEt46McRbT//kVXZ7b1YUYEVGdXEH74Nx3xzGA=="
-  "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-5.2.1.tgz"
-  "version" "5.2.1"
+"bootstrap@^5.2.2":
+  "integrity" "sha512-dEtzMTV71n6Fhmbg4fYJzQsw1N29hJKO1js5ackCgIpDcGid2ETMGC6zwSYw09v05Y+oRdQ9loC54zB1La3hHQ=="
+  "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-5.2.2.tgz"
+  "version" "5.2.2"
 
 "csstype@^2.6.8":
   "integrity" "sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ=="
