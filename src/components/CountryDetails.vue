@@ -1,17 +1,16 @@
 <script setup>
-    import { useRouter } from 'vue-router';
-    import { computed } from 'vue'
-    const route = useRouter()
-    const country = computed(() => {
-        return getCountryByCode(route.params.code);
-    })
-    
+/*     import { useRoute } */
+    import countries from "../countries.json"
+    console.log($route.params.code, route.params.code)
+
 </script>
 <template>
-    <div class="col-7">
-            <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`" alt="country flag" style="width: 100px"/>
+    <div class="col-7" :v-for="country in countries" :key="country.alpha3Code">
+      <div v-if ="$route.params.code === country.alpha3Code">
+        <img :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`" alt="country flag" style="width: 300px"/>
             <h1>{{ country.name.common }}</h1>
-            <table class="table">
+      </div>
+            <!-- <table class="table">
               <thead></thead>
               <tbody>
                 <tr>
@@ -35,6 +34,6 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
-          </div>
+            </table> -->
+    </div>
 </template>

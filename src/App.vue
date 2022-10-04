@@ -1,5 +1,6 @@
 <!--src/App.js-->
 <script setup>
+  import { RouterView } from 'vue-router';
   import Navbar from './components/Navbar.vue'
   import CountriesList from './components/CountriesList.vue'
 </script>
@@ -9,8 +10,8 @@
 
     <div className="container">
       <div className="row">
-        <CountriesList /> 
-        <router-view />
+        <CountriesList />
+        <RouterView />
       </div>
     </div>
   </div>
