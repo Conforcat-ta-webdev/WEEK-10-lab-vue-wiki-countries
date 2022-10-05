@@ -1,10 +1,28 @@
+<script setup>
+  /*import HelloWorld from "./components/HelloWorld.vue";*/
+  import NavBar from "./components/NavBar.vue";
+  import CountriesList from "./components/CountriesList.vue";
+
+  /*import CountryDetails from "./components/CountryDetails.vue";*/
+  /*import { useRoute } from 'vue-router'*/
+</script>
+
 <template>
-  <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+  <div class="app">
+    <NavBar />
+    <!--<HelloWorld />-->
+    <div className="container">
+      <div className="row">
+        <CountriesList :countries="countries" />
+        <router-view />
+      </div>
+    </div>
+    <!--<div className="row">
+    <div class="col-5" style="max-height: 90vh; overflow: scroll"> Change-->
+      <!--<CountriesListss></CountriesListss>
+      <CountryDetailsss></CountryDetailsss>
+    </div>-->
+    
   </div>
 </template>
 
