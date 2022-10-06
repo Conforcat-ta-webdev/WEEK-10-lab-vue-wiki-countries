@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue";
-import LoadingSpinnerVue from "./LoadingSpinner.vue";
+import LoadingSpinner from "./LoadingSpinner.vue";
 
 // import gsap from "gsap";
 
@@ -9,10 +9,11 @@ const loading = ref(true);
 const error = ref(null);
 const query = ref("");
 const search = ref("");
+const apiUrl = "https://ih-countries-api.herokuapp.com/countries";
 
 onMounted(async () => {
   try {
-    const res = await fetch("https://ih-countries-api.herokuapp.com/countries");
+    const res = await fetch(apiUrl);
     if (res.ok) countries.list = await res.json();
     if (!res.ok) error.value = "Error - API unavailable";
     loading.value = !loading.value;
@@ -53,6 +54,7 @@ onMounted(async () => {
 
 <template>
   <!-- <input v-model="query" /> -->
+  <LoadingSpinner v-if="loading" />
   <TransitionGroup name="list">
     <!-- tag="div"
     :css="false"
@@ -88,11 +90,13 @@ onMounted(async () => {
 .list-leave-active {
   transition: all 0.5s ease;
 }
+
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
+
 .fetch-method {
   position: absolute;
   top: 159px;

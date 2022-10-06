@@ -1,71 +1,86 @@
 <template>
-  <div v-if="active" class="loader-wrapper">
-    <div class="loader">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <p>{{ text }}</p>
-  </div>
+  <svg class="loading-spinner">
+    <circle
+      :cx="circlePositions[index] && circlePositions[index].x"
+      :cy="circlePositions[index] && circlePositions[index].y"
+      :r="item.radius"
+      :fill="item.color"
+      v-for="(item, index) in circles"
+      :key="index"
+    />
+  </svg>
 </template>
 
 <script>
+const CENTER_X = 50;
+const CENTER_Y = 50;
+const RADIUS = 20;
+
+function positionOnCircle(radius, angle, center) {
+  return {
+    x: center.x + radius * Math.cos(toRadians(angle)),
+    y: center.y + radius * Math.sin(toRadians(angle)),
+  };
+}
+
+function toRadians(angle) {
+  return (angle * Math.PI) / 180;
+}
+
+function calculatePositions(component) {
+  let angleIncrement = 360 / component.circles.length;
+  let positions = {};
+  component.circles.forEach((circle, index) => {
+    positions[index] = positionOnCircle(RADIUS, angleIncrement * index, {
+      x: CENTER_X,
+      y: CENTER_Y,
+    });
+  });
+  return positions;
+}
+
 export default {
-  name: "Loader",
-  props: {
-    active: Boolean,
-    text: String,
+  data() {
+    return {
+      circles: [
+        { color: "#E0F2F1", radius: 0 },
+        { color: "#B2DFDB", radius: 0 },
+        { color: "#80CBC4", radius: 0 },
+        { color: "#4DB6AC", radius: 0 },
+        { color: "#26A69A", radius: 0 },
+        { color: "#00897B", radius: 0 },
+        { color: "#00796B", radius: 0 },
+        { color: "#00695C", radius: 0 },
+        { color: "#004D40", radius: 0 },
+      ],
+      counter: 0,
+      interval: null,
+    };
+  },
+  computed: {
+    circlePositions: calculatePositions,
+  },
+  created() {
+    this.interval = setInterval(() => {
+      this.counter++;
+      this.circles = this.circles.map((item, index) => ({
+        ...item,
+        radius: (this.counter + index) % 8,
+      }));
+    }, 70);
+  },
+  destroyed() {
+    clearInterval(this.interval);
   },
 };
 </script>
 
 <style scoped>
-p {
-  font-size: 0.8em;
-  font-weight: 300;
-  margin-top: 5px;
-  letter-spacing: 1px;
-  color: rgb(82, 82, 82);
-}
-
-.loader-wrapper {
-  text-align: center;
-}
-
-.loader {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.loader div {
-  box-sizing: border-box;
-  display: block;
+.loading-spinner {
+  width: 100px;
+  height: 100px;
   position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #6916a0;
-  border-radius: 50%;
-  animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #6916a0 transparent transparent transparent;
-}
-.loader div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.loader div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.loader div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  top: 40%;
+  left: 16%;
 }
 </style>

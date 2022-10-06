@@ -8,7 +8,6 @@ import { RouterView } from "vue-router";
 <template>
   <div class="app">
     <Navbar />
-
     <div class="container">
       <div class="row">
         <div class="col-4" style="max-height: 90vh; overflow: scroll">
@@ -16,7 +15,6 @@ import { RouterView } from "vue-router";
             <CountriesList />
           </div>
         </div>
-
         <div class="col-7">
           <RouterView />
         </div>
@@ -54,9 +52,19 @@ code {
   margin-bottom: 20px;
   padding: 0px 35px;
 }
+
+.col-7 {
+  display: flex;
+  width: 58.33333333%;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
 a.list-group-item {
   padding-top: 30px;
 }
+
 .row {
   display: flex;
   justify-content: space-between;
@@ -82,12 +90,14 @@ a.list-group-item {
 .app-link {
   color: #61dafb;
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
   padding: 0px 35px;
 }
+/* 
 @keyframes app-logo-spin {
   from {
     transform: rotate(0deg);
@@ -95,5 +105,15 @@ a.list-group-item {
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* .list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
 }
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+} */
 </style>

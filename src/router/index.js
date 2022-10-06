@@ -28,11 +28,11 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/home",
-    name: "home",
-    component: () => import("../components/Home.vue"),
-  },
+  // {
+  //   path: "/home",
+  //   name: "home",
+  //   component: () => import("../components/Home.vue"),
+  // },
 ];
 
 const router = createRouter({

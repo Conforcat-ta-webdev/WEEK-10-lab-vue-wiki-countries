@@ -26,9 +26,9 @@ import { RouterLink } from "vue-router";
               >Home</RouterLink
             >
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <RouterLink to="/countries" class="nav-link">Countries</RouterLink>
-          </li>
+          </li> -->
           <li>
             <RouterLink
               v-for="country in countries"
