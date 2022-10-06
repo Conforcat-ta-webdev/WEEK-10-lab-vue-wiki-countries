@@ -1,13 +1,27 @@
 <template>
-  <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+<div class="app">
+  <Navbar />
+
+  <div className="containerT">
+    <div className="rowT">
+      <CountriesList :countries="countriesData" />
+     
+      <router-view />
+    </div>
   </div>
+</div>
 </template>
 
+<script setup>
+  import Navbar from "./components/Navbar.vue"
+  import CountriesList from "./components/CountriesList.vue"
+  import countries from "./countries.json"
+  import { defineProps, ref } from "vue"
+
+
+  const countriesData = ref(countries);
+
+</script>
 <style>
 body {
   margin: 0;
@@ -61,5 +75,21 @@ code {
     transform: rotate(360deg);
   }
 }
+a{
+  text-decoration: none;
+}
+
+.containerT{
+  flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+}
+
+.rowT {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 
 </style>
