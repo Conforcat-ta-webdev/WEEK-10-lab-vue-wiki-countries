@@ -9,7 +9,7 @@ const routes = [
     component: () => import('../components/CountriesList.vue'),
   },
   {
-    path: '/details', // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
+    path: '/:code', // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
     name: 'details',
     component: () => import('../components/CountryDetails.vue')
   },

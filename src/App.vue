@@ -2,9 +2,10 @@
 <div class="app">
   <Navbar />
 
-  <div className="container">
-    <div className="row">
+  <div className="containerT">
+    <div className="rowT">
       <CountriesList :countries="countriesData" />
+     
       <router-view />
     </div>
   </div>
@@ -16,6 +17,7 @@
   import CountriesList from "./components/CountriesList.vue"
   import countries from "./countries.json"
   import { defineProps, ref } from "vue"
+
 
   const countriesData = ref(countries);
 
@@ -73,5 +75,21 @@ code {
     transform: rotate(360deg);
   }
 }
+a{
+  text-decoration: none;
+}
+
+.containerT{
+  flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+}
+
+.rowT {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 
 </style>
