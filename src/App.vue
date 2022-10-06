@@ -2,9 +2,15 @@
   /*import HelloWorld from "./components/HelloWorld.vue";*/
   import NavBar from "./components/NavBar.vue";
   import CountriesList from "./components/CountriesList.vue";
-
+  import countries from "./countries.json"; /*iteracion 2*/
+  
   /*import CountryDetails from "./components/CountryDetails.vue";*/
-  /*import { useRoute } from 'vue-router'*/
+  /*const countries2 = ref (countries)*/
+  countries.sort((a, b) => {
+    if (a.name.common > b.name.common) return 1;
+    if (a.name.common < b.name.common) return -1;
+    return 0;
+  });
 </script>
 
 <template>
@@ -13,14 +19,14 @@
     <!--<HelloWorld />-->
     <div className="container">
       <div className="row">
-        <CountriesList :countries="countries" />
+        <CountriesList :countries="countries" /> <!--iteracion 2: conectando json a CountriesList por props -->
         <router-view />
       </div>
     </div>
-    <!--<div className="row">
-    <div class="col-5" style="max-height: 90vh; overflow: scroll"> Change-->
-      <!--<CountriesListss></CountriesListss>
-      <CountryDetailsss></CountryDetailsss>
+    <!--<div className="row"> Iteracion 1.3 y 1.4
+    <div class="col-5" style="max-height: 90vh; overflow: scroll"> Change
+      <CountriesListss></CountriesListss>
+      <CountryDetailsss></CountryDetails>
     </div>-->
     
   </div>
