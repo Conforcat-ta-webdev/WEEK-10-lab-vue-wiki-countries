@@ -8,18 +8,12 @@ const routes = [
 
     children: [
       {
-        path: "/:code", // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
+        path: "/:code",
         name: "details",
         component: () => import("../components/CountryDetails.vue"),
       },
     ],
   },
-  /* 
-  {
-    path: '/:code', // THEN, YOU WILL HAVE TO CHANGE THIS FOR A PARAM!
-    name: 'details',
-    component: () => import('../components/CountryDetails.vue')
-  }, */
 ];
 
 const router = createRouter({
