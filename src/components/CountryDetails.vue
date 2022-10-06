@@ -2,6 +2,7 @@
 <template>     
 
  <!-- Country Details (Bootstrap column) -->
+ <!-- Country Details (Bootstrap column) -->
  <div class="col-7">
             <img src="https://restcountries.eu/data/fra.svg" alt="country flag" style="width: 300px"/>
             <h1>France</h1>
@@ -35,8 +36,7 @@
               </tbody>
             </table>
           </div>
-
-
+          <router-view />
 </template>
 
 <script setup>

@@ -17,6 +17,7 @@ import Navbar from "./components/Navbar.vue";
 import countries from "./countries.json"
 import CountriesList from './components/CountriesList.vue'
 import CountryDetails from './components/CountryDetails.vue'
+import { RouterView } from "vue-router";
 
 
 
