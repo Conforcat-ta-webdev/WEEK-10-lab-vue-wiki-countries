@@ -11,7 +11,7 @@ export default {
   <div class="list-group m-3">
     <div
       v-for="country in countries"
-      class="list-group-item"
+      class="list-group-item p-5"
       :key="country.alpha3Code"
     >
       <RouterLink
