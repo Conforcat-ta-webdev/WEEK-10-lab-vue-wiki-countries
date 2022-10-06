@@ -100,7 +100,7 @@ onMounted(async () => {
 .fetch-method {
   position: absolute;
   top: 159px;
-  left: 160px;
+  left: 180px;
 }
 
 li {
