@@ -1,14 +1,30 @@
 <template>
   <div className="app">
-    <header className="app-header">
-      <p>
-        Edit <code>src/main.js</code> and save to reload.
-      </p>
-    </header>
+    <Nabvar></Nabvar>
+
+    <div class="container">
+      <div class="row row-aux">
+        <div class="col-4 countries-list">
+          <div class="list-group">
+            <CountriesList />
+          </div>
+
+        </div>
+        <div class="col-8">
+          <RouterView />
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
-<style>
+<script setup>
+import Nabvar from './components/Nabvar.vue';
+import CountriesList from './components/CountriesList.vue';
+</script>
+
+<style scoped>
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -18,48 +34,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.countries-list {
+  height: calc(100vh - 100px);
+  overflow: scroll;
 }
 
-.app {
-  text-align: center;
+.container {
+  padding-left: 70px;
+  padding-right: 70px;
+  margin: 0;
+  max-width: 100wv;
 }
 
-.app-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row-aux {
+  width: 100%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .app-logo {
-    animation: app-logo-spin infinite 20s linear;
-  }
-}
-
-.app-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.app-link {
-  color: #61dafb;
-}
-
-@keyframes app-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 </style>
