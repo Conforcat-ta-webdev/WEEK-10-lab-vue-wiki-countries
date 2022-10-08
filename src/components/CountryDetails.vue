@@ -1,41 +1,40 @@
 
 <template>     
-
- <!-- Country Details (Bootstrap column) -->
- <!-- Country Details (Bootstrap column) -->
  <div class="col-7">
-            <img src="https://restcountries.eu/data/fra.svg" alt="country flag" style="width: 300px"/>
-            <h1>France</h1>
+  <div v-for="country in countries" :key="country.alpha3Code">
+    <div v-if="$route.params.id === country.alpha3Code">
+      <img :src="'https://flagpedia.net/data/flags/icon/72x54/' + country.alpha2Code.toLowerCase() + '.png'" style="width: 300px"/>
+          <h1>{{country.name.common}}</h1>
             <table class="table">
               <thead></thead>
               <tbody>
                 <tr>
                   <td style="width: 30%">Capital</td>
-                  <td>Paris</td>
+                  <td>{{ country.capital[0] }}</td>
                 </tr>
                 <tr>
                   <td>Area</td>
                   <td>
-                    551695 km <sup>2</sup>
+                    {{ country.area }} km <sup>2</sup>
                   </td>
                 </tr>
                 <tr>
                   <td>Borders</td>
                   <td>
-                    <ul>
-                      <li><a href="/AND">Andorra</a></li>
-                      <li><a href="/BEL">Belgium</a></li>
-                      <li><a href="/DEU">Germany</a></li>
-                      <li><a href="/ITA">Italy</a></li>
-                      <li><a href="/MCO">Monaco</a></li>
-                      <li><a href="/ESP">Spain</a></li>
-                      <li><a href="/CHE">Switzerland</a></li>
+                      <ul v-for="border in country.borders" :key="border">
+                      <div v-for="bordercountries in countries" :key="country.alpha3Code">
+                       <li v-if="border === bordercountries.alpha3Code">
+                      <router-link :to="bordercountries.alpha3Code">{{ bordercountries.name.common }}</router-link></li>
+                      </div>
                     </ul>  
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
           <router-view />
 </template>
 
