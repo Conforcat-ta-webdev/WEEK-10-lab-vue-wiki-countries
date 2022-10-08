@@ -96,6 +96,9 @@ watch((route) => fetchData());
   justify-content: center;
   align-items: center;
 } */
+li {
+  list-style: none;
+}
 
 .list-enter-active,
 .list-leave-active {
