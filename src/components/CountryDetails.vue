@@ -37,7 +37,7 @@ watch((route) => fetchData());
 </script>
 
 <template>
-  <div v-if="country">
+  <div v-if="country" class="counry-container">
     <LoadingSpinner v-if="loading" />
     <TransitionGroup name="list">
       <p v-if="error">{{ error }}</p>
@@ -58,18 +58,17 @@ watch((route) => fetchData());
         <thead></thead>
         <tbody>
           <tr>
-            <td style="width: 30%">Capital</td>
+            <td>Capital</td>
             <!-- <td>{{ country[0].capital.join(", ") }}</td> -->
             <td>{{ country.capital.join(", ") }}</td>
           </tr>
           <tr>
             <td>Area</td>
-            <!-- <td>{{ country[0].area }} km <sup>2</sup></td> -->
-            {{
-              country.area
-            }}
-            km
-            <sup>2</sup>
+            <!-- <td>{{ country[0].area }} km<sup>2</sup></td> -->
+            <td>
+              {{ country.area }}
+              km<sup>2</sup>
+            </td>
           </tr>
           <tr>
             <td>Borders</td>
@@ -108,5 +107,8 @@ li {
 .list-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+.counry-container {
+  width: -webkit-fill-available;
 }
 </style>
