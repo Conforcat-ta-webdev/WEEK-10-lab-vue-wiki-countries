@@ -2,8 +2,6 @@
 import { ref, reactive, onMounted } from "vue";
 import LoadingSpinner from "./LoadingSpinner.vue";
 
-// import gsap from "gsap";
-
 const countries = reactive({ list: [] });
 const loading = ref(true);
 const error = ref(null);
@@ -22,45 +20,11 @@ onMounted(async () => {
     loading.value = !loading.value;
   }
 });
-// const computedList = computed(() => {
-//   return countries.list.filter((item) =>
-//     item.msg.toLowerCase().includes(query.value)
-//   );
-// });
-
-// function onBeforeEnter(el) {
-//   el.style.opacity = 0;
-//   el.style.height = 0;
-// }
-
-// function onEnter(el, done) {
-//   gsap.to(el, {
-//     opacity: 1,
-//     height: "1.6em",
-//     delay: el.dataset.index * 0.15,
-//     onComplete: done,
-//   });
-// }
-
-// function onLeave(el, done) {
-//   gsap.to(el, {
-//     opacity: 0,
-//     height: 0,
-//     delay: el.dataset.index * 0.15,
-//     onComplete: done,
-//   });
-// }
 </script>
 
 <template>
-  <!-- <input v-model="query" /> -->
   <LoadingSpinner v-if="loading" />
   <TransitionGroup name="list">
-    <!-- tag="div"
-    :css="false"
-    @before-enter="onBeforeEnter"
-    @enter="onEnter"
-    @leave="onLeave" -->
     <p v-if="error">{{ error }}</p>
     <p v-if="loading" class="fetch-method">fetching... 🫣</p>
     <input

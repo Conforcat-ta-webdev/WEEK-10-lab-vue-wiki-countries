@@ -5,21 +5,13 @@ import { computed, watch, ref, onMounted } from "vue";
 import LoadingSpinner from "./LoadingSpinner.vue";
 
 const route = useRoute();
-// let country = computed(() =>
-//   countries.filter((country) => country.alpha3Code === route.params.id)
-// );
+
 const country = ref(null);
 const loading = ref(true);
 const error = ref(null);
 const apiUrl = computed(
   () => `https://ih-countries-api.herokuapp.com/countries/${route.params.id}`
 );
-
-// watch(route, (newValue) => {
-//   country = countries.filter(
-//     (country) => country.alpha3Code === newValue.params.id
-//   );
-// });
 
 function fetchData() {
   fetch(apiUrl.value)
@@ -42,29 +34,22 @@ watch((route) => fetchData());
     <TransitionGroup name="list">
       <p v-if="error">{{ error }}</p>
       <p v-if="loading">fetching... 🤓</p>
-      <!-- <img
-    :src="`https://flagpedia.net/data/flags/icon/72x54/${country[0].alpha2Code.toLowerCase()}.png`"
-    alt="country flag"
-    style="width: 100px"
-  /> -->
+
       <img
         :src="`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`"
         alt="country flag"
         style="width: 100px"
       />
-      <!-- <h1>{{ country[0].name.common }}</h1> -->
       <h1>{{ country.name.common }}</h1>
       <table class="table">
         <thead></thead>
         <tbody>
           <tr>
             <td>Capital</td>
-            <!-- <td>{{ country[0].capital.join(", ") }}</td> -->
             <td>{{ country.capital.join(", ") }}</td>
           </tr>
           <tr>
             <td>Area</td>
-            <!-- <td>{{ country[0].area }} km<sup>2</sup></td> -->
             <td>
               {{ country.area }}
               km<sup>2</sup>
@@ -74,7 +59,6 @@ watch((route) => fetchData());
             <td>Borders</td>
             <td>
               <ul>
-                <!-- <li v-for="border in country[0].borders" :key="border"> -->
                 <li v-for="border in country.borders" :key="border">
                   <RouterLink :to="border">{{ border }}</RouterLink>
                 </li>
@@ -88,13 +72,6 @@ watch((route) => fetchData());
 </template>
 
 <style scoped>
-/* .col-7 {
-  display: flex;
-  width: 58.33333333%;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-} */
 li {
   list-style: none;
 }
