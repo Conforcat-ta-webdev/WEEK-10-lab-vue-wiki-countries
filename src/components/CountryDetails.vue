@@ -9,11 +9,11 @@ import countries from './../countries.json'
                 <img :src=" 'https://flagpedia.net/data/flags/icon/72x54/'+ country.alpha2Code.toLowerCase() + '.png' ">
                 <h1>{{country.name.common}}</h1>
                 <hr />
-                <p>Capital
+                <p>Capital 
                     <span v-for="cap in country.capital"> - {{cap}}</span>
                 </p>
                 <hr />
-                <p>Area
+                <p>Area 
                     <span>{{country.area}} km<sup>2</sup></span>
                 </p>
                 <hr />
