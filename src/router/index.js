@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Countrieslist from '../components/CountriesList.vue';
 
 const routes = [
   {

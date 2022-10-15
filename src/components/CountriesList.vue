@@ -4,7 +4,7 @@
   import axios from 'axios';
 
   
-  const countries = ref('')
+const countries = ref('')
 
   onMounted(() => {
     
@@ -15,7 +15,6 @@
       })
       .catch( error => console.log(error));
   })    
-
 
 
 </script>
